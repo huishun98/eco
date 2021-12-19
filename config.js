@@ -1,3 +1,3 @@
-const spreadsheetIndex = 1
+const initiativesSheetIndex = 1
 
-export { spreadsheetIndex }
+export { initiativesSheetIndex }

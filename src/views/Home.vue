@@ -9,7 +9,7 @@
 </template>
 
 <script>
-import { accessSpreadSheet } from "../api/sheets";
+import { getInitiativesSheet } from "../api/sheets";
 import Card from "../components/Card";
 
 export default {
@@ -26,7 +26,7 @@ export default {
   },
   methods: {
     async updateData() {
-      const sheet = await accessSpreadSheet();
+      const sheet = await getInitiativesSheet();
       this.headers = sheet.headerValues;
       sheet.getRows().then((rows) => {
         this.cards = rows;
