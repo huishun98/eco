@@ -1,18 +1,37 @@
 <template>
-  <div class="home">
-    <img alt="Vue logo" src="../assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
-  </div>
+  <v-container class="max-port-width">
+    <v-row dense>
+      <v-col v-for="card in cards" :key="card._rowNumber" sm="6" md="4">
+        <Card :values="card" :headers="headers" />
+      </v-col>
+    </v-row>
+  </v-container>
 </template>
 
 <script>
-// @ is an alias to /src
-import HelloWorld from '@/components/HelloWorld.vue'
+import { accessSpreadSheet } from "../api/sheets";
+import Card from "../components/Card";
 
 export default {
-  name: 'Home',
+  name: "Home",
+  mounted() {
+    this.updateData();
+  },
+  data: () => ({
+    cards: [],
+    headers: [],
+  }),
   components: {
-    HelloWorld
-  }
-}
+    Card,
+  },
+  methods: {
+    async updateData() {
+      const sheet = await accessSpreadSheet();
+      this.headers = sheet.headerValues;
+      sheet.getRows().then((rows) => {
+        this.cards = rows;
+      });
+    },
+  },
+};
 </script>
