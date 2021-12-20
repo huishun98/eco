@@ -1,37 +1,34 @@
 <template>
-  <v-container class="max-port-width">
-    <v-row dense>
-      <v-col v-for="card in cards" :key="card._rowNumber" sm="6" md="4">
-        <Card :values="card" :headers="headers" />
-      </v-col>
-    </v-row>
-  </v-container>
+  <Banner
+    height="100vh"
+    title="Eco SG"
+    description="A one-stop green SG"
+    :button1="button1"
+    :button2="button2"
+    imgname="mathew-schwartz-unsplash.jpg"
+  />
 </template>
 
 <script>
-import { getInitiativesSheet } from "../api/sheets";
+import Banner from "../components/Banner";
 import Card from "../components/Card";
+import { initiativeTypeOne, initiativeTypeTwo } from "../../config";
 
 export default {
   name: "Home",
-  mounted() {
-    this.updateData();
-  },
-  data: () => ({
-    cards: [],
-    headers: [],
-  }),
   components: {
+    Banner,
     Card,
   },
-  methods: {
-    async updateData() {
-      const sheet = await getInitiativesSheet();
-      this.headers = sheet.headerValues;
-      sheet.getRows().then((rows) => {
-        this.cards = rows;
-      });
+  data: () => ({
+    button1: {
+      title: initiativeTypeOne,
+      routeName: initiativeTypeOne,
     },
-  },
+    button2: {
+      title: initiativeTypeTwo,
+      routeName: initiativeTypeTwo,
+    },
+  }),
 };
 </script>
