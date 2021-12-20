@@ -1,7 +1,7 @@
 <template>
   <Banner
     height="100vh"
-    title="Eco SG"
+    title="EcoSG"
     description="A one-stop green SG"
     :button1="button1"
     :button2="button2"

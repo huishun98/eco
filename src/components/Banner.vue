@@ -5,25 +5,30 @@
       <div class="mark px-10 py-2 text-h2" v-if="title">
         {{ title }}
       </div>
-      <div class="text-subtitle-1 my-4 px-5 primary-color mark-white" v-if="description">
+      <div
+        class="text-subtitle-1 my-4 px-5 primary-color mark-white"
+        v-if="description"
+      >
         {{ description }}
       </div>
-      <v-btn
-        class="ma-2"
-        dark
-        color="var(--primary-color)"
-        :to="{ name: button1.routeName }"
-        v-if="button1"
-        >{{ button1.title }}</v-btn
-      >
-      <v-btn
-        class="ma-2"
-        dark
-        color="var(--primary-color)"
-        :to="{ name: button2.routeName }"
-        v-if="button2"
-        >{{ button2.title }}</v-btn
-      >
+      <div>
+        <v-btn :block="!$vuetify.breakpoint.smAndUp"
+          class="ma-2"
+          dark
+          color="var(--primary-color)"
+          :to="{ name: button1.routeName }"
+          v-if="button1"
+          >{{ button1.title }}</v-btn
+        >
+        <v-btn :block="!$vuetify.breakpoint.smAndUp"
+          class="ma-2"
+          dark
+          color="var(--primary-color)"
+          :to="{ name: button2.routeName }"
+          v-if="button2"
+          >{{ button2.title }}</v-btn
+        >
+      </div>
     </div>
   </v-item-group>
 </template>
